@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Test</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .question {
+        margin-bottom: 20px;
+    }
+    .question p {
+        font-weight: bold;
+    }
+    input[type="radio"] {
+        margin-right: 10px;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+    <h1>Math Test</h1>
+    <form action="{% url 'result' %}", method="post">
+        {% csrf_token %}
+        {% for test in tests %}
+        <div class="question">
+            <p>{{test.question}}</p>
+            <input type="radio" name="{{test.question}}" value="a" required> {{test.option1}}<br>
+            <input type="radio" name="{{test.question}}" value="b"> {{test.option2}}<br>
+            <input type="radio" name="{{test.question}}" value="c"> {{test.option3}}<br>
+            <input type="radio" name="{{test.question}}" value="d"> {{test.option4}}<br>
+        </div>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
